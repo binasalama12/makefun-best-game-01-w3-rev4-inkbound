@@ -34,6 +34,7 @@ export function stageShot(run, name) {
     const spots = [
       ['dasher', 218, 196], ['splitter', 668, 178], ['armoured', 706, 486],
       ['drinker', 268, 492], ['sleeper', 586, 540], ['mimic', 168, 372], ['pagemite', 782, 316],
+      ['pagemite', 806, 590], ['dasher', 108, 520],
     ];
     for (const [t, x, y] of spots) { const b = spawnBeast(run, t, x, y); b.phase = x * 0.01; }
     ch.shimmers.push({ poly: circle(706, 486, 58, 0, 6.28, 26), t: 0.3, gold: false });
@@ -42,8 +43,8 @@ export function stageShot(run, name) {
     ch.floaters.push({ x: 268, y: 428, text: '+440 GOLD', color: '#c99612', big: true, t: 0.5, life: 1.25 });
     ch.floaters.push({ x: 560, y: 240, text: '+180', color: '#3a2a18', big: false, t: 0.7, life: 1.25 });
     burst(ch, 706, 486, false, 12); burst(ch, 268, 492, true, 14);
-    pushBanner(run, 'TRIPLE BIND! +1,400', 'combo \u00d7' + '2.5 \u2014 the Leviathan strains against gold');
-    ch.banners[0].t = 0.4;
+    pushBanner(run, 'TRIPLE BIND! +1,400', 'combo \u00d72.5 \u2014 the Leviathan strains against gold');
+    for (const b of ch.banners) b.t = 0.5; // mid-life, so both plaques render at full alpha
     return { view: { stroke: circle(440, 330, 138, -2.4, 0.9, 30), goldMode: true, pointer: { x: 578, y: 330 } } };
   }
 

@@ -140,7 +140,7 @@ export function drawBeast(ctx, b, t) {
       for (let i = 0; i < 4; i++) sketchCircle(ctx, -r + 6 + i * (r * 0.62), Math.sin(b.phase + i) * 2.4, r * 0.52, '#9db873', INK);
       eyes(ctx, r - 2, -3, 4, 0, 1.9); break;
     case 'armoured':
-      sketchCircle(ctx, 0, 0, r, b.armour ? '#8a6f4d' : '#c9a briefly', INK);
+      sketchCircle(ctx, 0, 0, r, b.armour ? '#8a6f4d' : '#c9a86a', INK);
       ctx.fillStyle = b.armour ? '#77603f' : '#b98d54';
       ctx.beginPath(); ctx.arc(0, 0, r, 0, 7); ctx.fill();
       ctx.strokeStyle = INK; ctx.lineWidth = 2; ctx.stroke();
@@ -306,10 +306,10 @@ export function drawPlay(ctx, run, view) {
   // bottom strip: controls + chapter pips
   txt(ctx, 'Drag to draw a loop \u00b7 release closed to BIND \u00b7 hold G or tap the gold seal for GOLD ink \u00b7 loops cost ink by length', 24, 692, 13.5, '#cbb27f', 'left');
   for (let i = 0; i < CHAPTERS.length; i++) {
-    ctx.beginPath(); ctx.arc(1150 + i * 15 - 52, 686, 5.4, 0, 7);
+    ctx.beginPath(); ctx.arc(792 + i * 15, 686, 5.4, 0, 7);
     ctx.fillStyle = i < run.chapterIdx ? '#c99612' : (i === run.chapterIdx ? '#f3d98b' : 'rgba(232,217,174,0.3)'); ctx.fill();
   }
-  txt(ctx, 'gold ink mode: ' + (view.goldMode ? 'ON \u2014 loops spend gold leaf, score \u00d72 with Gilded Quill' : 'off'), 908, 692, 12.5, view.goldMode ? '#e6be3c' : 'rgba(232,217,174,0.55)', 'left');
+  txt(ctx, view.goldMode ? 'GOLD INK: ON \u2014 loops spend gold leaf' : 'gold ink: off (hold G for gold loops)', 1256, 692, 12.5, view.goldMode ? '#e6be3c' : 'rgba(232,217,174,0.55)', 'right');
 }
 
 function drawPanel(ctx, run, view) {
@@ -364,7 +364,6 @@ export function titleButtons() {
 export function drawTitle(ctx, run, view) {
   ctx.fillStyle = '#1d1206'; ctx.fillRect(0, 0, W, H);
   ctx.drawImage(parchment(0), 60, 36); // reuse folio texture as backdrop page
-  ctx.save(); ctx.translate(60, 36); ctx.restore();
   rr(ctx, 60, 36, FIELD.w, FIELD.h, 6); ctx.strokeStyle = '#c99612'; ctx.lineWidth = 2.4; ctx.stroke();
   // side strip with a mini bestiary-count seal
   rr(ctx, 972, 36, 248, 648, 8); ctx.fillStyle = '#2b1d0d'; ctx.fill(); ctx.strokeStyle = '#c99612'; ctx.stroke();
@@ -374,7 +373,7 @@ export function drawTitle(ctx, run, view) {
   txt(ctx, 'close a loop around a beast and the ink itself becomes the binding.', 98, 202, 15.5, INK);
 
   // how to play
-  rr(ctx, 92, 224, 500, 196, 8); ctx.fillStyle = 'rgba(255,250,232,0.55)'; ctx.fill(); ctx.strokeStyle = 'rgba(122,84,16,0.6)'; ctx.stroke();
+  rr(ctx, 92, 224, 500, 206, 8); ctx.fillStyle = 'rgba(255,250,232,0.55)'; ctx.fill(); ctx.strokeStyle = 'rgba(122,84,16,0.6)'; ctx.stroke();
   txt(ctx, 'HOW TO PLAY', 112, 252, 16, '#8c5a10', 'left', true);
   const how = [
     '\u2022 Drag with mouse or finger to draw a loop; release with',
